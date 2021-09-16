@@ -1,0 +1,46 @@
+<label class = "filter-by">Фильтр по приоритету: </label>
+
+<select class = "select-filter">
+
+  <option>выберите приоритет</option>
+  <option>любой</option>
+  <option>низкий</option>
+  <option>средний</option>
+  <option>высокий</option>
+
+</select>
+
+<p>
+<label class = "filter-by">Фильтр по статусу: </label>
+активные <input type = checkbox>
+отмененные <input type = checkbox>
+завершенные <input type = checkbox>
+</p>
+
+<p>
+<label class = "filter-by">Сортировка по дате</label>
+
+<select class = "select-data">
+
+  <option>По возрастанию</option>
+  <option>По убыванию</option>
+
+</select>
+</p>
+
+<p>
+ <label class = "filter-by">Сортировка по приоритету</label>
+
+<select class = "select-priority">
+
+  <option>По возрастанию</option>
+  <option>По убыванию</option>
+
+</select>
+
+  <div *ngFor="let item of items">
+    {{item}}
+</div>
+
+
+

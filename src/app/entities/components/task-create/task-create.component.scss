@@ -1,0 +1,31 @@
+.toDoList {
+  font: 70pt "Montserrat ExtraBold";
+  color: #909cac;
+  padding: 260px;
+}
+
+.priority {
+  font: 18pt "Montserrat SemiBold";
+  color: #a47053;
+  margin: 200px 120px 0px 0px;
+}
+
+.priority-select {
+  font: 16pt "Montserrat Light";
+  border-radius: 9px;
+}
+
+.input-task {
+  font: 20pt "Montserrat Medium";
+  border-radius: 9px;
+  margin-top: 20px;
+}
+
+.button-task {
+  border-radius: 6px;
+  font: 22pt "Montserrat SemiBold";
+  background-color: #efca66;
+  color: white;
+  margin-right: 10px;
+  padding: 0 20px 0 20px;
+}
