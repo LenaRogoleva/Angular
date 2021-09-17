@@ -1,14 +1,14 @@
 <label class = "toDoList">ToDoList</label>
 
-<div>
+<div [formGroup]="task">
   <label class = "priority"> Приоритет</label>
-  <select class = "priority-select">
+  <select class = "priority-select" formControlName="namePriority">
     <option>низкий</option>
     <option>средний</option>
     <option>высокий</option>
   </select>
 
-  <input class = "input-task">
-  <button class = "button-task">Добавить задачу</button>
+  <input class = "input-task" formControlName="nameTask">
+  <button class = "button-task" (click) = "addTask()">Добавить задачу</button>
 
 </div>

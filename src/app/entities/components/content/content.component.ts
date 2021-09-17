@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
+import {TaskService} from "../../task.service";
+import {TaskInterface} from "../../task.interface";
+
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss']
 })
+
 export class ContentComponent implements OnInit {
 
-  constructor() { }
+  public toDo: TaskInterface[] = [];
 
-  ngOnInit(): void {
+  constructor( private _taskService: TaskService) { }
+
+
+  public ngOnInit(): void {
+
+    this._taskService.getTask();
+    this._taskService.tasks$.subscribe( task => this.toDo = task);
   }
+
+
 
 }
