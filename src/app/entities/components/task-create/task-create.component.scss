@@ -1,31 +1,55 @@
 .toDoList {
-  font: 70pt "Montserrat ExtraBold";
-  color: #909cac;
-  padding: 260px;
+  font: 54pt "Montserrat ExtraBold";
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+  color: #F6F18F ;
+  position: relative;
+  width: auto;
+  height: 200px;
+  left: 450px;
 }
 
 .priority {
-  font: 18pt "Montserrat SemiBold";
-  color: #a47053;
+  font: 16pt "Montserrat SemiBold";
+  color: #F6F18F;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
   margin: 200px 120px 0px 0px;
+  display: inline;
+  position: relative;
+  left: 90px;
 }
 
 .priority-select {
-  font: 16pt "Montserrat Light";
+  font: 14pt "Montserrat Light";
   border-radius: 9px;
+  display: inline;
+  position: relative;
+  right: 10px;
 }
 
 .input-task {
-  font: 20pt "Montserrat Medium";
+  font: 16pt "Montserrat Medium";
   border-radius: 9px;
   margin-top: 20px;
+  display: inline;
 }
 
 .button-task {
   border-radius: 6px;
-  font: 22pt "Montserrat SemiBold";
-  background-color: #efca66;
+  font: 16pt "Montserrat SemiBold";
+  background-color: #E5CBF5;
   color: white;
   margin-right: 10px;
   padding: 0 20px 0 20px;
+  display: inline;
+  position: relative;
+  left: 10px;
 }
+
+.new-task {
+  display: block;
+  position: relative;
+  left: 100px;
+}
+
