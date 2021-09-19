@@ -12,8 +12,13 @@
   position: relative;
   top:100px;
   left: 10px;
-  //width: 100%;
-  //margin: 10px auto;
-  //border: 1px solid #ccc;
-  //display: inline-block;
+}
+
+.recorded-tasks {
+  background-color:#E5CBF5;
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  display: inline-block;
 }

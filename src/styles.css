@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 * {
-  background-color: #FFFFCC;
+  max-width: 720px;
+  margin: 3px auto;
+  /*margin: 3px auto;*/
 }
 
 .body {
-  /*position: static;*/
-  /*height: auto;*/
-  /*width: auto;*/
+  background-color: #FFFFCC;
 }
 

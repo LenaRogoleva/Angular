@@ -3,53 +3,35 @@
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
   color: #F6F18F ;
-  position: relative;
-  width: auto;
-  height: 200px;
-  left: 450px;
+  padding: 10px 200px;
 }
 
 .priority {
-  font: 16pt "Montserrat SemiBold";
+  font: 14pt "Montserrat SemiBold";
   color: #F6F18F;
   -webkit-text-stroke-width: 0.5px;
   -webkit-text-stroke-color: black;
-  margin: 200px 120px 0px 0px;
-  display: inline;
-  position: relative;
-  left: 90px;
+  margin: 100px 60px 0px 0px;
 }
 
 .priority-select {
-  font: 14pt "Montserrat Light";
+  font: 12pt "Montserrat Light";
   border-radius: 9px;
-  display: inline;
-  position: relative;
-  right: 10px;
 }
 
 .input-task {
-  font: 16pt "Montserrat Medium";
+  font: 12pt "Montserrat Medium";
   border-radius: 9px;
   margin-top: 20px;
-  display: inline;
+  margin-left: 10px;
 }
 
 .button-task {
   border-radius: 6px;
-  font: 16pt "Montserrat SemiBold";
+  font: 14pt "Montserrat SemiBold";
   background-color: #E5CBF5;
   color: white;
-  margin-right: 10px;
+  margin-left: 10px;
   padding: 0 20px 0 20px;
-  display: inline;
-  position: relative;
-  left: 10px;
-}
-
-.new-task {
-  display: block;
-  position: relative;
-  left: 100px;
 }
 
