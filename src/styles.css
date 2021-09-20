@@ -4,8 +4,10 @@
   margin: 3px auto;
   /*margin: 3px auto;*/
 }
-
+:host {
+  background-color: #FFFEA6;
+}
 .body {
-  background-color: #FFFFCC;
+  background-color: #FFFEA6;
 }
 

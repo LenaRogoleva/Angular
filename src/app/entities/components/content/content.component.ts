@@ -1,6 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {TaskService} from "../../task.service";
 import {TaskInterface} from "../../task.interface";
+import {style} from "@angular/animations";
 
 
 @Component({
@@ -18,9 +19,15 @@ export class ContentComponent implements OnInit {
 
   public ngOnInit(): void {
 
-    // this._taskService.getTask();
-    this._taskService.tasks$.subscribe( task => this.toDo = task);
+    this._taskService.getTask();
+    this._taskService.tasks$.subscribe( task => {
+      task.sort( function (a,b){
+        return a.status - b.status;
+      })
+      this.toDo = task
+    })
   }
+
 
 
 

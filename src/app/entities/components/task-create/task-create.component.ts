@@ -27,9 +27,9 @@ export class TaskCreateComponent implements OnInit {
     let newTask: TaskInterface = {
       name: this.task.get('nameTask')?.value,
       priority: this.task.get('namePriority')?.value,
-      time: new Date().toString(),
+      time: new Date().toLocaleString(),
       id: Math.random(),
-      status: 'unfinished'
+      status: 2
     }
     this._taskService.addTask(newTask)
   }

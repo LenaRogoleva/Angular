@@ -1,13 +1,13 @@
 .fin-tasks {
-  font: 12pt "Montserrat Medium";
+  font: 14pt "Montserrat Medium";
 }
 
 .cancel-tasks {
-  font: 12pt "Montserrat Medium";
+  font: 14pt "Montserrat Medium";
 }
 
 .unf-tasks {
-  font: 12pt "Montserrat Medium";
+  font: 14pt "Montserrat Medium";
   background-color:#cec3c8;
   position: relative;
   top:100px;
@@ -21,4 +21,21 @@
   margin: 10px auto;
   border: 1px solid #ccc;
   display: inline-block;
+}
+
+.received-tasks {
+  height: 70px;
+  background-color: white;
+}
+
+.finishedTasks {
+  background-color: #98FB98;
+}
+
+.unfinishedTasks {
+  background-color: white;
+}
+
+.canceledTasks {
+  background-color: #FFC0CB;
 }
