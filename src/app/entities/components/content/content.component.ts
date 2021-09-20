@@ -18,7 +18,7 @@ export class ContentComponent implements OnInit {
 
   public ngOnInit(): void {
 
-    this._taskService.getTask();
+    // this._taskService.getTask();
     this._taskService.tasks$.subscribe( task => this.toDo = task);
   }
 

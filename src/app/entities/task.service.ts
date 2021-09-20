@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {TaskInterface} from "./task.interface";
 
-const test: TaskInterface[] = [{
-  name: 'hello',
-  priority: 'low',
-  time: new Date(),
-  id: 1,
-  status: 'unfinished'
-}]
+// const test: TaskInterface[] = [{
+//   name: 'hello',
+//   priority: 'low',
+//   time: new Date(),
+//   id: 1,
+//   status: 'unfinished'
+// }]
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,9 @@ export class TaskService {
 
   constructor() { }
 
-  public getTask(): void {
-    this._tasks$$.next(test)
-  }
+  // public getTask(): void {
+  //   this._tasks$$.next(test)
+  // }
 
   public addTask(task: TaskInterface): void {
     const tasks = this._tasks$$.value;
