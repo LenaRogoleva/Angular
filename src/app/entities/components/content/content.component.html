@@ -5,5 +5,11 @@
           <div>{{task.name}}</div>
           <div>{{task.time}}</div>
         </div>
+      <div class = "icons-item">
+        <span (click)="delete(task)" class="material-icons delete">delete</span>
+        <span class="material-icons outlined">save</span>
+        <span (click) = "finish(task)" class="material-icons outlined" id = "checkFinish">done</span>
+        <span (click) = "cancel(task)" class="material-icons outlined" id = "checkCancel">close</span>
+      </div>
     </div>
 </div>

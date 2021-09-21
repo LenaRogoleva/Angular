@@ -2,10 +2,10 @@
 
 <div [formGroup]="task" class="new-task">
   <label class = "priority"> Приоритет</label>
-  <select class = "priority-select" formControlName="namePriority">
-    <option>низкий</option>
-    <option>средний</option>
-    <option>высокий</option>
+  <select  class = "priority-select" formControlName="namePriority">
+    <option value = "low" selected = "selected">низкий</option>
+    <option value = "medium">средний</option>
+    <option value = "high">высокий</option>
   </select>
 
   <input class = "input-task" formControlName="nameTask">

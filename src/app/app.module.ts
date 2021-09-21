@@ -7,6 +7,8 @@ import { ContentComponent } from './entities/components/content/content.componen
 import { ToolBarComponent } from './entities/components/tool-bar/tool-bar.component';
 import { TaskEditComponent } from './entities/components/task-edit/task-edit.component';
 import { TaskCreateComponent } from './entities/components/task-create/task-create.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,13 @@ import { TaskCreateComponent } from './entities/components/task-create/task-crea
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

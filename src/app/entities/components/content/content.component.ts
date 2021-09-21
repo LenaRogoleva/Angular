@@ -1,7 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {TaskService} from "../../task.service";
 import {TaskInterface} from "../../task.interface";
-import {style} from "@angular/animations";
+import {disableDebugTools} from "@angular/platform-browser";
 
 
 @Component({
@@ -28,7 +28,17 @@ export class ContentComponent implements OnInit {
     })
   }
 
+  public delete(task: TaskInterface): void {
+    this._taskService.deleteTask(task);
+  }
 
+  public finish(task: TaskInterface): void {
+    this._taskService.finishTask(task);
+  }
+
+  public cancel (task: TaskInterface): void {
+    this._taskService.cancelTask(task);
+  }
 
 
 }
