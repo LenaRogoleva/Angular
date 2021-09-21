@@ -67,10 +67,6 @@ export class TaskService {
 
   public finishTask(task: TaskInterface): void {
     task.status = 1;
-    let check = document.getElementById('checkFinish');
-    if (check != null) {
-      check.remove();
-    }
     this.http.put<TaskInterface>('http://localhost:3000/items/' + task.id, task).toPromise().then(() => {
       const tasks = this._tasks$$.value;
       task.status = 1;
@@ -80,10 +76,6 @@ export class TaskService {
 
   public cancelTask (task: TaskInterface): void {
     task.status = 3;
-    let check = document.getElementById('checkFinish');
-    if (check != null) {
-      check.remove();
-    }
     this.http.put<TaskInterface>('http://localhost:3000/items/' + task.id, task).toPromise().then(() => {
       const tasks = this._tasks$$.value;
       task.status = 3;

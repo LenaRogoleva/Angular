@@ -31,7 +31,11 @@ export class TaskCreateComponent implements OnInit {
       id: Math.random(),
       status: 2
     }
-    this._taskService.addTask(newTask)
+    if (newTask.name.length === 0){
+      alert("Введите данные")
+    } else {
+      this._taskService.addTask(newTask)
+    }
   }
 
 
