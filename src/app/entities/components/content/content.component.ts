@@ -13,6 +13,8 @@ import {disableDebugTools} from "@angular/platform-browser";
 export class ContentComponent implements OnInit {
 
   public toDo: TaskInterface[] = [];
+  public selectedPriority: string = 'любой';
+  public selectedSortData: string = 'выберите сортировку';
 
   constructor( private _taskService: TaskService) { }
 
@@ -21,10 +23,17 @@ export class ContentComponent implements OnInit {
 
     this._taskService.getTask();
     this._taskService.tasks$.subscribe( task => {
-      task.sort( function (a,b){
-        return a.status - b.status;
-      })
-      this.toDo = task
+      this.toDo = task;
+      this.sortData();
+    })
+
+    this._taskService._priorityFilter$.subscribe(priority => {
+      this.selectedPriority = priority
+    })
+
+    this._taskService.sortData$.subscribe( data => {
+      this.selectedSortData = data;
+      this.sortData();
     })
   }
 
@@ -39,6 +48,21 @@ export class ContentComponent implements OnInit {
   public cancel (task: TaskInterface): void {
     this._taskService.cancelTask(task);
   }
+
+  public sortData(): void {
+
+    this.toDo.sort((a, b) => {
+        let aTime = a.time.slice(3,6) + a.time.slice(0,3) + a.time.slice(6);
+        let bTime = b.time.slice(3,6) + b.time.slice(0,3) + b.time.slice(6);
+        if (this.selectedSortData === 'По возрастанию') {
+          return new Date(aTime).getTime() - new Date(bTime).getTime()
+        } else if (this.selectedSortData === 'По убыванию') {
+          return new Date(bTime).getTime() - new Date(aTime).getTime()
+        } else {
+          return a.status - b.status;
+        }
+      })
+    }
 
 
 }

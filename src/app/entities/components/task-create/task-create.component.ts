@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl} from "@angular/forms";
+import {FormGroup, FormControl, Validators, ValidationErrors} from "@angular/forms";
 import {TaskInterface} from "../../task.interface";
 import {TaskService} from "../../task.service";
 
@@ -11,9 +11,11 @@ import {TaskService} from "../../task.service";
 export class TaskCreateComponent implements OnInit {
 
   public task = new FormGroup( {
-    nameTask: new FormControl(''),
-    namePriority: new FormControl('')
+    nameTask: new FormControl(null, Validators.required),
+    namePriority: new FormControl('Выберите приоритет', [Validators.required, TaskCreateComponent._myFirstValidator])
   })
+
+
 
   constructor(private _taskService: TaskService) {
 
@@ -31,13 +33,18 @@ export class TaskCreateComponent implements OnInit {
       id: Math.random(),
       status: 2
     }
-    if (newTask.name.length === 0){
-      alert("Введите данные")
-    } else {
-      this._taskService.addTask(newTask)
-    }
+
+    this._taskService.addTask(newTask);
+    this.task.get('nameTask')?.reset();
   }
 
+  private static _myFirstValidator(control: FormControl): ValidationErrors | null {
+    const value = control.value;
+    if (value === "Выберите приоритет"){
+      return { invalidTask: false }
+    }
+    return null;
+  }
 
 
 

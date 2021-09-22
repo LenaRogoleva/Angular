@@ -3,34 +3,6 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 import {TaskInterface} from "./task.interface";
 import {HttpClient} from "@angular/common/http";
 
-const test: TaskInterface[] = [{
-  name: 'hello',
-  priority: 'low',
-  time: new Date(),
-  id: 1,
-  status: 2,
-},
-  {
-    name: 'how',
-    priority: 'low',
-    time: new Date(),
-    id: 1,
-    status: 1
-  },
-  {
-    name: 'are',
-    priority: 'low',
-    time: new Date(),
-    id: 1,
-    status: 3
-  },
-  {
-    name: 'you',
-    priority: 'low',
-    time: new Date(),
-    id: 1,
-    status: 1
-  }]
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +11,14 @@ export class TaskService {
 
   private _tasks$$: BehaviorSubject<TaskInterface[]> = new BehaviorSubject<TaskInterface[]>([]);
   public tasks$: Observable<TaskInterface[]> = this._tasks$$.asObservable();
+
+  private _sortData$$: BehaviorSubject<string> = new BehaviorSubject<string>('выберите сортировку');
+  public sortData$: Observable<string> = this._sortData$$.asObservable();
+
+
+  private _priorityFilter$$: BehaviorSubject<string> = new BehaviorSubject<string>('любой');
+  public _priorityFilter$: Observable<string> = this._priorityFilter$$.asObservable();
+
 
   constructor(private http: HttpClient) { }
 
@@ -74,7 +54,7 @@ export class TaskService {
     })
   }
 
-  public cancelTask (task: TaskInterface): void {
+  public cancelTask(task: TaskInterface): void {
     task.status = 3;
     this.http.put<TaskInterface>('http://localhost:3000/items/' + task.id, task).toPromise().then(() => {
       const tasks = this._tasks$$.value;
@@ -82,4 +62,25 @@ export class TaskService {
       this._tasks$$.next(tasks);
     })
   }
+
+  public setPriority(priority: string): void {
+    this._priorityFilter$$.next(priority)
+  }
+
+  public setData(data: string): void {
+    this._sortData$$.next(data)
+  }
+
+
+  // public filterPriority(item: string): void {
+  //   const tasks = this._tasks$$.value;
+  //   let tasksFiltered: TaskInterface[] = [];
+  //     for ( let i=0; i<tasks.length; i++) {
+  //       if (tasks[i].priority === item){
+  //       tasksFiltered.push (tasks[i]);
+  //       }
+  //     this._tasks$$.next(tasksFiltered);
+  //     }
+  // }
 }
+

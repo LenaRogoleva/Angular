@@ -3,12 +3,14 @@
 <div [formGroup]="task" class="new-task">
   <label class = "priority"> Приоритет</label>
   <select  class = "priority-select" formControlName="namePriority">
-    <option selected = "selected">низкий</option>
+    <option disabled>Выберите приоритет</option>
+    <option>низкий</option>
     <option>средний</option>
     <option>высокий</option>
   </select>
 
   <input class = "input-task" formControlName="nameTask">
-  <button class = "button-task" (click) = "addTask()">Добавить задачу</button>
-
+  <span [formGroup]="task">
+  <button class = "button-task" (click) = "addTask()" [disabled]="task.invalid">Добавить задачу</button>
+  </span>
 </div>
