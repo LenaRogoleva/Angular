@@ -6,11 +6,11 @@
     <option disabled>Выберите приоритет</option>
     <option>низкий</option>
     <option>средний</option>
-    <option>высокий</option>
+    <option>высокий&nbsp;</option>
   </select>
 
   <input class = "input-task" formControlName="nameTask">
   <span [formGroup]="task">
-  <button class = "button-task" (click) = "addTask()" [disabled]="task.invalid">Добавить задачу</button>
+  <button class = "button-task" (click) = "addTask()" [disabled]="task.invalid">&nbsp;Добавить задачу</button>
   </span>
 </div>

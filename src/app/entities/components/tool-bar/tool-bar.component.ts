@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, ValidationErrors, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {TaskInterface} from "../../task.interface";
 import {TaskService} from "../../task.service";
 
@@ -10,12 +10,16 @@ import {TaskService} from "../../task.service";
 })
 export class ToolBarComponent implements OnInit {
 
-  // public items: number[] = [0, 1, 2, 3 ,4 ,5 ];
-
   public filterControl = new FormControl('выберите приоритет');
   public dataControl = new FormControl('выберите сортировку');
-  public selectedSortData: string = 'выберите сортировку';
-  public toDo: TaskInterface[] = [];
+  public sortPriorityControl = new FormControl('выберите сортировку');
+  public filterByStatus = new FormGroup({
+      2: new FormControl(0),
+      1: new FormControl(0),
+      3: new FormControl(0)
+    }
+  )
+
 
   constructor(private _taskService: TaskService) {
   }
@@ -24,13 +28,20 @@ export class ToolBarComponent implements OnInit {
   }
 
   public filter(): void {
-    // this._taskService.filterPriority(this.filterControl.value);
     this._taskService.setPriority(this.filterControl.value);
   }
 
 
   public sortByData(): void {
       this._taskService.setData(this.dataControl.value);
+  }
+
+  public sortByPriority(): void {
+    this._taskService.setPrioritySort(this.sortPriorityControl.value);
+  }
+
+  public sortByStatus(): void {
+    this._taskService.setStatus(this.filterByStatus.value);
   }
 
 }

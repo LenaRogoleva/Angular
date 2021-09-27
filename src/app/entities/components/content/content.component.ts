@@ -15,6 +15,8 @@ export class ContentComponent implements OnInit {
   public toDo: TaskInterface[] = [];
   public selectedPriority: string = 'любой';
   public selectedSortData: string = 'выберите сортировку';
+  public selectedSortFilter: string = 'выберите сортировку';
+  public selectedStatus: number = 0;
 
   constructor( private _taskService: TaskService) { }
 
@@ -35,6 +37,18 @@ export class ContentComponent implements OnInit {
       this.selectedSortData = data;
       this.sortData();
     })
+
+    this._taskService.sortPriority$.subscribe( priority => {
+      this.selectedSortFilter = priority;
+      this.sortPriority();
+    })
+
+      this._taskService.filterByStatus$.subscribe(status => {
+        this.selectedStatus = status;
+        console.log(this.selectedStatus);
+        this.filterStatus();
+      })
+
   }
 
   public delete(task: TaskInterface): void {
@@ -63,6 +77,33 @@ export class ContentComponent implements OnInit {
         }
       })
     }
+
+    public sortPriority(): void {
+
+    this.toDo.sort ((a: any,b: any) => {
+      if (this.selectedSortFilter === 'По убыванию') {
+        if (a.priority.length > b.priority.length) return -1;
+        else if (a.priority.length < b.priority.length) return 1;
+        else return 0;
+      }
+      else if (this.selectedSortFilter === 'По возрастанию') {
+        if (a.priority.length < b.priority.length) return -1;
+        else if (a.priority.length >= b.priority.length) return 1;
+        else return 0;
+      }
+      else {
+        return a.priority.length + b.priority.length;
+      }
+      })
+    }
+
+    public filterStatus(): void {
+
+    this.toDo.filter((item) =>{
+      return item.status === this.selectedStatus;
+    })
+    }
+
 
 
 }

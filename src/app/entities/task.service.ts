@@ -15,9 +15,14 @@ export class TaskService {
   private _sortData$$: BehaviorSubject<string> = new BehaviorSubject<string>('выберите сортировку');
   public sortData$: Observable<string> = this._sortData$$.asObservable();
 
+  private _sortPriority$$: BehaviorSubject<string> = new BehaviorSubject<string>('выберите сортировку');
+  public sortPriority$: Observable<string> = this._sortPriority$$.asObservable();
 
   private _priorityFilter$$: BehaviorSubject<string> = new BehaviorSubject<string>('любой');
   public _priorityFilter$: Observable<string> = this._priorityFilter$$.asObservable();
+
+  private _filterByStatus$$: BehaviorSubject<number> = new BehaviorSubject<number>(1|2|3);
+  public filterByStatus$: Observable<number> = this._filterByStatus$$.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -69,6 +74,14 @@ export class TaskService {
 
   public setData(data: string): void {
     this._sortData$$.next(data)
+  }
+
+  public setPrioritySort (priority: string): void {
+    this._sortPriority$$.next(priority)
+  }
+
+  public setStatus( status: number): void {
+    this._filterByStatus$$.next(status)
   }
 
 
