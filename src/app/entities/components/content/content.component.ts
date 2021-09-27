@@ -16,7 +16,7 @@ export class ContentComponent implements OnInit {
   public selectedPriority: string = 'любой';
   public selectedSortData: string = 'выберите сортировку';
   public selectedSortFilter: string = 'выберите сортировку';
-  public selectedStatus: number = 0;
+  public selectedStatus: boolean = false;
 
   constructor( private _taskService: TaskService) { }
 
@@ -46,7 +46,7 @@ export class ContentComponent implements OnInit {
       this._taskService.filterByStatus$.subscribe(status => {
         this.selectedStatus = status;
         console.log(this.selectedStatus);
-        this.filterStatus();
+        // this.filterStatus();
       })
 
   }
@@ -98,10 +98,9 @@ export class ContentComponent implements OnInit {
     }
 
     public filterStatus(): void {
-
-    this.toDo.filter((item) =>{
-      return item.status === this.selectedStatus;
-    })
+      // if (this.selectedStatus.active === true){
+      //
+      // }
     }
 
 

@@ -11,11 +11,11 @@
 </select>
 </div>
 
-<div class = "filter-status">
-  <label class = "filter-by" [formGroup]="filterByStatus">Фильтр по статусу </label>
-  <label class = "check-label">активные</label> <input type = checkbox class = "check-label" (change)="sortByStatus()" value="2" formControlName= 2>
-  <label class = "check-label">&nbsp;&nbsp;отмененные</label> <input type = checkbox class = "check-label" (change)="sortByStatus()" value="3" formControlName= 3>
-  <label class = "check-label">&nbsp;&nbsp;завершенные</label> <input type = checkbox class = "check-label" (change)="sortByStatus()" value="1" formControlName= 1>
+<div class = "filter-status" [formGroup]="filterByStatus">
+  <label class = "filter-by">Фильтр по статусу </label>
+  <label class = "check-label">активные</label> <input type = checkbox class = "check-label" (change)="sortByStatus()" formControlName="active">
+  <label class = "check-label">&nbsp;&nbsp;отмененные</label> <input type = checkbox class = "check-label" (change)="sortByStatus()" value="3" formControlName="canceled">
+  <label class = "check-label">&nbsp;&nbsp;завершенные</label> <input type = checkbox class = "check-label" (change)="sortByStatus()" value="1" formControlName="finished">
 </div>
 
 <div class = "sort-by-data">

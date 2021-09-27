@@ -14,9 +14,9 @@ export class ToolBarComponent implements OnInit {
   public dataControl = new FormControl('выберите сортировку');
   public sortPriorityControl = new FormControl('выберите сортировку');
   public filterByStatus = new FormGroup({
-      2: new FormControl(0),
-      1: new FormControl(0),
-      3: new FormControl(0)
+      active: new FormControl(false),
+      canceled: new FormControl(false),
+      finished: new FormControl(false)
     }
   )
 
@@ -41,6 +41,7 @@ export class ToolBarComponent implements OnInit {
   }
 
   public sortByStatus(): void {
+    // console.log(this.filterByStatus.value);
     this._taskService.setStatus(this.filterByStatus.value);
   }
 

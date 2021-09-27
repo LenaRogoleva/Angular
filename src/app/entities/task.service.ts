@@ -21,8 +21,8 @@ export class TaskService {
   private _priorityFilter$$: BehaviorSubject<string> = new BehaviorSubject<string>('любой');
   public _priorityFilter$: Observable<string> = this._priorityFilter$$.asObservable();
 
-  private _filterByStatus$$: BehaviorSubject<number> = new BehaviorSubject<number>(1|2|3);
-  public filterByStatus$: Observable<number> = this._filterByStatus$$.asObservable();
+  private _filterByStatus$$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public filterByStatus$: Observable<boolean> = this._filterByStatus$$.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -80,7 +80,7 @@ export class TaskService {
     this._sortPriority$$.next(priority)
   }
 
-  public setStatus( status: number): void {
+  public setStatus( status: boolean): void {
     this._filterByStatus$$.next(status)
   }
 
