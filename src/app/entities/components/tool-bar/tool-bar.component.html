@@ -13,7 +13,10 @@
 
 <div class = "filter-status" [formGroup]="filterByStatus">
   <label class = "filter-by">&nbsp;Фильтр по статусу </label>
-  <label class = "check-label1">активные</label> <input type = checkbox class = "check-label11" (change)="sortByStatus()" formControlName="active">
+  <label class = "check-label1">активные</label> <input type = checkbox
+                                                        class = "check-label11"
+                                                        (change)="sortByStatus()"
+                                                        formControlName="active">
   <label class = "check-label2">&nbsp;&nbsp;отмененные</label> <input type = checkbox class = "check-label22" (change)="sortByStatus()" value="3" formControlName="canceled">
   <label class = "check-label3">&nbsp;&nbsp;завершенные</label> <input type = checkbox class = "check-label33" (change)="sortByStatus()" value="1" formControlName="finished">
 </div>

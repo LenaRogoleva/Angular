@@ -21,7 +21,7 @@ export class TaskService {
   private _priorityFilter$$: BehaviorSubject<string> = new BehaviorSubject<string>('любой');
   public _priorityFilter$: Observable<string> = this._priorityFilter$$.asObservable();
 
-  private _filterByStatus$$: BehaviorSubject<object> = new BehaviorSubject<object>({active: false, canceled: false, finished:false});
+  private _filterByStatus$$: BehaviorSubject<object> = new BehaviorSubject<object>({active: true, canceled: true, finished: true});
   public filterByStatus$: Observable<object> = this._filterByStatus$$.asObservable();
 
 

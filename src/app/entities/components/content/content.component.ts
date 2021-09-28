@@ -17,13 +17,11 @@ export class ContentComponent implements OnInit {
   public selectedSortData: string = 'выберите сортировку';
   public selectedSortFilter: string = 'выберите сортировку';
   public selectedStatus: object = {
-    active: false,
-    canceled: false,
-    finished: false
+    active: true,
+    canceled: true,
+    finished: true
   }
-  public selectedStatusActive: string = '';
-  public selectedStatusFinish: string = '';
-  public selectedStatusCancel: string = '';
+  public selectedStatusArray: string[] = [];
 
   constructor( private _taskService: TaskService) { }
 
@@ -50,20 +48,35 @@ export class ContentComponent implements OnInit {
       this.sortPriority();
     })
 
-      this._taskService.filterByStatus$.subscribe(status => {
-        this.selectedStatus = status;
-        console.log(this.selectedStatus);
-        // if (this.selectedStatus === ) {
-        //   this.selectedStatusActive = Object.keys(this.selectedStatus)[0];
-        //   this.selectedStatusFinish = Object.keys(this.selectedStatus)[1];
-        //   this.selectedStatusCancel = Object.keys(this.selectedStatus)[2];
-        //   // console.log(Object.keys(this.selectedStatus)[0]);
-        //   console.log(this.selectedStatusActive);
-        //   console.log(this.selectedStatusCancel);
-        //   console.log(this.selectedStatusFinish);
-        // }
-        // this.filterStatus();
-      })
+    this._taskService.filterByStatus$.subscribe(status => {
+      this.selectedStatus = {
+          active: false,
+          finished: false,
+          canceled: false
+        }
+      this.selectedStatus = status;
+      this.selectedStatusArray = [];
+        for (let item in status) {
+          // @ts-ignore
+         if (status[item] === true) {
+           switch (item) {
+             case 'active':
+               item = '2';
+               break;
+             case 'finished':
+               item = '1'
+               break;
+             case 'canceled':
+               item = '3'
+               break;
+           }
+           this.selectedStatusArray.push(item);
+         }
+         if (this.selectedStatusArray.length ===0){
+         this.selectedStatusArray =['1', '2', '3']
+         }
+         }
+    })
 
   }
 
@@ -111,12 +124,6 @@ export class ContentComponent implements OnInit {
         return a.priority.length + b.priority.length;
       }
       })
-    }
-
-    public filterStatus(): void {
-      // if (this.selectedStatus.active === true){
-      //
-      // }
     }
 
 
