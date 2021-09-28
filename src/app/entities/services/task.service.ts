@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
-import {TaskInterface} from "./task.interface";
+import {TaskInterface} from "../interfaces/task.interface";
 import {HttpClient} from "@angular/common/http";
 
 
@@ -21,8 +21,8 @@ export class TaskService {
   private _priorityFilter$$: BehaviorSubject<string> = new BehaviorSubject<string>('любой');
   public _priorityFilter$: Observable<string> = this._priorityFilter$$.asObservable();
 
-  private _filterByStatus$$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public filterByStatus$: Observable<boolean> = this._filterByStatus$$.asObservable();
+  private _filterByStatus$$: BehaviorSubject<object> = new BehaviorSubject<object>({active: false, canceled: false, finished:false});
+  public filterByStatus$: Observable<object> = this._filterByStatus$$.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -80,7 +80,7 @@ export class TaskService {
     this._sortPriority$$.next(priority)
   }
 
-  public setStatus( status: boolean): void {
+  public setStatus( status: object): void {
     this._filterByStatus$$.next(status)
   }
 

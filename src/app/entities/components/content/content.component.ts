@@ -1,6 +1,6 @@
 import {Component, Injectable, OnInit} from '@angular/core';
-import {TaskService} from "../../task.service";
-import {TaskInterface} from "../../task.interface";
+import {TaskService} from "../../services/task.service";
+import {TaskInterface} from "../../interfaces/task.interface";
 import {disableDebugTools} from "@angular/platform-browser";
 
 
@@ -16,7 +16,14 @@ export class ContentComponent implements OnInit {
   public selectedPriority: string = 'любой';
   public selectedSortData: string = 'выберите сортировку';
   public selectedSortFilter: string = 'выберите сортировку';
-  public selectedStatus: boolean = false;
+  public selectedStatus: object = {
+    active: false,
+    canceled: false,
+    finished: false
+  }
+  public selectedStatusActive: string = '';
+  public selectedStatusFinish: string = '';
+  public selectedStatusCancel: string = '';
 
   constructor( private _taskService: TaskService) { }
 
@@ -46,6 +53,15 @@ export class ContentComponent implements OnInit {
       this._taskService.filterByStatus$.subscribe(status => {
         this.selectedStatus = status;
         console.log(this.selectedStatus);
+        // if (this.selectedStatus === ) {
+        //   this.selectedStatusActive = Object.keys(this.selectedStatus)[0];
+        //   this.selectedStatusFinish = Object.keys(this.selectedStatus)[1];
+        //   this.selectedStatusCancel = Object.keys(this.selectedStatus)[2];
+        //   // console.log(Object.keys(this.selectedStatus)[0]);
+        //   console.log(this.selectedStatusActive);
+        //   console.log(this.selectedStatusCancel);
+        //   console.log(this.selectedStatusFinish);
+        // }
         // this.filterStatus();
       })
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, ValidationErrors} from "@angular/forms";
-import {TaskInterface} from "../../task.interface";
-import {TaskService} from "../../task.service";
+import {TaskInterface} from "../../interfaces/task.interface";
+import {TaskService} from "../../services/task.service";
 
 @Component({
   selector: 'app-task-create',

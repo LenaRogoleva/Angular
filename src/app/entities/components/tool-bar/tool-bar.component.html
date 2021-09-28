@@ -1,7 +1,7 @@
 <form class = "tool-bar">
 
 <div>
-  <label class = "filter-by">Фильтр по приоритету </label>
+  <label class = "filter-by">&nbsp;Фильтр по приоритету </label>
   <select class = "select-filter" (change)="filter()" [formControl]="filterControl">
   <option disabled>выберите приоритет</option>
   <option>любой</option>
@@ -12,14 +12,14 @@
 </div>
 
 <div class = "filter-status" [formGroup]="filterByStatus">
-  <label class = "filter-by">Фильтр по статусу </label>
-  <label class = "check-label">активные</label> <input type = checkbox class = "check-label" (change)="sortByStatus()" formControlName="active">
-  <label class = "check-label">&nbsp;&nbsp;отмененные</label> <input type = checkbox class = "check-label" (change)="sortByStatus()" value="3" formControlName="canceled">
-  <label class = "check-label">&nbsp;&nbsp;завершенные</label> <input type = checkbox class = "check-label" (change)="sortByStatus()" value="1" formControlName="finished">
+  <label class = "filter-by">&nbsp;Фильтр по статусу </label>
+  <label class = "check-label1">активные</label> <input type = checkbox class = "check-label11" (change)="sortByStatus()" formControlName="active">
+  <label class = "check-label2">&nbsp;&nbsp;отмененные</label> <input type = checkbox class = "check-label22" (change)="sortByStatus()" value="3" formControlName="canceled">
+  <label class = "check-label3">&nbsp;&nbsp;завершенные</label> <input type = checkbox class = "check-label33" (change)="sortByStatus()" value="1" formControlName="finished">
 </div>
 
 <div class = "sort-by-data">
-<label class = "filter-by">Сортировка по дате</label>
+<label class = "filter-by">&nbsp;Сортировка по дате</label>
 <select class = "select-data" (change)="sortByData()" [formControl]="dataControl">
   <option>выберите сортировку</option>
   <option>По возрастанию</option>
@@ -28,7 +28,7 @@
 </div>
 
 <div class = "sort-by-priority">
- <label class = "filter-by">Сортировка по приоритету</label>
+ <label class = "filter-by">&nbsp;Сортировка по приоритету</label>
 <select class = "select-priority" (change)="sortByPriority()" [formControl]="sortPriorityControl">
   <option>выберите сортировку</option>
   <option>По возрастанию</option>

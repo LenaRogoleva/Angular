@@ -15,10 +15,10 @@
 }
 
 .recorded-tasks {
-  background-color:#E5CBF5;
+  background-color:#CBF1F5;
   border-radius: 5px;
   width: 100%;
-  margin: 10px auto;
+  //margin: 10px;
   border: 1px solid #ccc;
   display: inline-block;
 }
@@ -26,6 +26,8 @@
 .received-tasks {
   height: 70px;
   background-color: white;
+  text-indent: 5px;
+  margin: 0 5px 0 5px;
 }
 
 .finishedTasks {
@@ -41,7 +43,7 @@
 }
 
 .icons-item {
-  margin-left: 620px;
+  margin-left: 585px;
   margin-top: -30px
 }
 
