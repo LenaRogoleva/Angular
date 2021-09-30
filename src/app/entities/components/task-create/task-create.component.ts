@@ -10,6 +10,7 @@ import {TaskService} from "../../services/task.service";
 })
 export class TaskCreateComponent implements OnInit {
 
+  // @ts-ignore //todo здесь не поняла почему ругается
   public task = new FormGroup( {
     nameTask: new FormControl(null, Validators.required),
     namePriority: new FormControl('Выберите приоритет', [Validators.required, TaskCreateComponent._myFirstValidator])

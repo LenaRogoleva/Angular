@@ -72,7 +72,7 @@
   border-radius: 1px;
   position: relative;
   width: 100%;
-  height: 210px;
+  height: 250px;
   margin: 30px auto;
   display: inline-block;
   font: 12pt "Montserrat Light";
@@ -92,6 +92,21 @@
 .sort-by-priority {
   position: relative;
   top: 90px;
+}
+
+.searchTask {
+  position: relative;
+  top: 120px;
+}
+
+.search {
+  font: 12pt "Montserrat Light";
+  background-color: white;
+  border-radius: 3px;
+  padding: 0 1px 0 0px;
+  position: absolute;
+  left: 335px;
+  width: 240px;
 }
 
 
