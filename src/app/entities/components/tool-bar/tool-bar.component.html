@@ -48,8 +48,8 @@
 </div>
 
 <div class="searchTask">
-  <label>Поиск</label>
-  <input class="search">
+  <label>&nbsp;Поиск</label>
+  <input class="search" [formControl]="search" (input)="searchTask()">
 </div>
 
 </form>

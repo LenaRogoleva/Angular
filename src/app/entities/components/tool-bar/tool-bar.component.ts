@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {FormArrayName, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {TaskInterface} from "../../interfaces/task.interface";
 import {TaskService} from "../../services/task.service";
 
@@ -19,6 +19,7 @@ export class ToolBarComponent implements OnInit {
       finished: new FormControl(false)
     }
   )
+  public search = new FormControl('');
 
 
   constructor(private _taskService: TaskService) {
@@ -41,8 +42,11 @@ export class ToolBarComponent implements OnInit {
   }
 
   public sortByStatus(): void {
-    // console.log(this.filterByStatus.value);
     this._taskService.setStatus(this.filterByStatus.value);
+  }
+
+  public searchTask(): void {
+    this._taskService.startSearch(this.search.value);
   }
 
 }

@@ -22,6 +22,7 @@ export class ContentComponent implements OnInit {
     finished: true
   }
   public selectedStatusArray: string[] = [];
+  public search: string ='';
 
   constructor( private _taskService: TaskService) { }
 
@@ -78,6 +79,11 @@ export class ContentComponent implements OnInit {
          }
     })
 
+    this._taskService.searchTask$.subscribe( text => {
+      this.search = text;
+      this.searchTask();
+    })
+
   }
 
   public delete(task: TaskInterface): void {
@@ -124,6 +130,20 @@ export class ContentComponent implements OnInit {
         return a.priority.length + b.priority.length;
       }
       })
+    }
+
+    // public additionalFunction(task: TaskInterface){
+    //   return task.name.includes(this.search)
+    // }
+
+    public searchTask(): void {
+    // this.toDo.filter ( function (task) {
+    //   return task.name.toLowerCase().includes(ContentComponent.search)
+    // })
+    //   this.toDo.filter(this.additionalFunction)
+      this.toDo.filter (task => task.name.toLowerCase().includes(this.search))
+      console.log(this.search);
+      console.log(this.toDo);
     }
 
 

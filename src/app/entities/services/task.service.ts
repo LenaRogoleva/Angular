@@ -24,6 +24,9 @@ export class TaskService {
   private _filterByStatus$$: BehaviorSubject<object> = new BehaviorSubject<object>({active: true, canceled: true, finished: true});
   public filterByStatus$: Observable<object> = this._filterByStatus$$.asObservable();
 
+  private _searchTask$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public searchTask$: Observable<string> = this._searchTask$$.asObservable();
+
 
   constructor(private http: HttpClient) { }
 
@@ -82,6 +85,10 @@ export class TaskService {
 
   public setStatus( status: object): void {
     this._filterByStatus$$.next(status)
+  }
+
+  public startSearch(text: string): void {
+    this._searchTask$$.next(text);
   }
 
 
