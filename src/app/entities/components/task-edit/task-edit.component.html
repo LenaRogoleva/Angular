@@ -1,1 +1,13 @@
-<p>task-edit works!</p>
+<div *ngFor="let task of toDo" >
+    <div *ngIf="task.id == this.id" class="received-tasks">
+      <div [ngClass]="task.status === 1 ? 'finishedTasks' : task.status === 2 ? 'unfinishedTasks': 'canceledTasks'">
+        <div class="color-priority">&nbsp;{{task.priority}}</div>
+        &nbsp;<input value = "task.name" class="input" [formControl]="editTask">
+<!--        <div contenteditable="true" formControlName="editTask">{{task.name}}</div>-->
+        <div>&nbsp;{{task.time}}</div>
+      </div>
+        <div class="icons-item">
+        <span class = "material-icons save" (click)="save()" >save</span>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {TaskService} from "../../services/task.service";
 import {TaskInterface} from "../../interfaces/task.interface";
 import {disableDebugTools} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -24,7 +25,12 @@ export class ContentComponent implements OnInit {
   public selectedStatusArray: string[] = [];
   public search: string ='';
 
-  constructor( private _taskService: TaskService) { }
+  constructor( private _taskService: TaskService, private router: Router) {
+
+  }
+  public goToPage(pageName:string, id: number) {
+    this.router.navigate([`${pageName}`, id]);
+  }
 
 
   public ngOnInit(): void {
@@ -97,6 +103,10 @@ export class ContentComponent implements OnInit {
   public cancel (task: TaskInterface): void {
     this._taskService.cancelTask(task);
   }
+
+  // public edit (task: TaskInterface): void {
+  //   this._taskService.editTask(task);
+  // }
 
   public sortData(): void {
 

@@ -27,6 +27,9 @@ export class TaskService {
   private _searchTask$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public searchTask$: Observable<string> = this._searchTask$$.asObservable();
 
+  private _saveTask$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public saveTask$: Observable<string> = this._saveTask$$.asObservable();
+
 
   constructor(private http: HttpClient) { }
 
@@ -71,6 +74,7 @@ export class TaskService {
     })
   }
 
+
   public setPriority(priority: string): void {
     this._priorityFilter$$.next(priority)
   }
@@ -91,16 +95,14 @@ export class TaskService {
     this._searchTask$$.next(text);
   }
 
+  public saveTask(name: string, task: TaskInterface): void {
+    this._saveTask$$.next(name);
+    this.http.put<TaskInterface>('http://localhost:3000/items/edit/' + task.id, task).toPromise().then(() => {
+      const tasks = this._tasks$$.value;
+      task.name = name;
+      this._tasks$$.next(tasks);
+    })
+  }
 
-  // public filterPriority(item: string): void {
-  //   const tasks = this._tasks$$.value;
-  //   let tasksFiltered: TaskInterface[] = [];
-  //     for ( let i=0; i<tasks.length; i++) {
-  //       if (tasks[i].priority === item){
-  //       tasksFiltered.push (tasks[i]);
-  //       }
-  //     this._tasks$$.next(tasksFiltered);
-  //     }
-  // }
 }
 

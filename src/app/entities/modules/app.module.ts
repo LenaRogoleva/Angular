@@ -11,10 +11,11 @@ import { TaskEditComponent } from '../components/task-edit/task-edit.component';
 import { TaskCreateComponent } from '../components/task-create/task-create.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {RenderingComponent} from "../../rendering/rendering.component";
 
 const appRoutes: Routes = [
-  { path: '', component: AppComponent},
-  { path: 'edit', component: TaskEditComponent }
+  { path: '', component: RenderingComponent},
+  { path: 'edit/:id', component: TaskEditComponent }
 ]
 
 @NgModule({
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
     ContentComponent,
     ToolBarComponent,
     TaskEditComponent,
-    TaskCreateComponent
+    TaskCreateComponent,
+    RenderingComponent
   ],
   imports: [
     BrowserModule,

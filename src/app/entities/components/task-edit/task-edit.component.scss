@@ -1,0 +1,29 @@
+.finishedTasks {
+  background-color: #98FB98;
+}
+
+.unfinishedTasks {
+  background-color: white;
+}
+
+.canceledTasks {
+  background-color: #FFC0CB;
+}
+
+.icons-item {
+  margin-left: 585px;
+  margin-top: -35px;
+  cursor: pointer;
+}
+
+.received-tasks {
+  position: absolute;
+  height: 70px;
+  top: 50px;
+  left: 30%;
+  //margin: 0 5px 0 5px;
+}
+
+.input {
+  outline: 0px solid transparent;
+}
