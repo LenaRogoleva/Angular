@@ -97,11 +97,13 @@ export class TaskService {
 
   public saveTask(name: string, task: TaskInterface): void {
     this._saveTask$$.next(name);
-    this.http.put<TaskInterface>('http://localhost:3000/items/edit/' + task.id, task).toPromise().then(() => {
+    task.name = name;
+    this.http.put<TaskInterface>('http://localhost:3000/items/' + task.id, task).toPromise().then(() => {
       const tasks = this._tasks$$.value;
       task.name = name;
       this._tasks$$.next(tasks);
     })
+    alert("Вы сохранили изменения :)")
   }
 
 }

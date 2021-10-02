@@ -5,6 +5,8 @@ import {disableDebugTools} from "@angular/platform-browser";
 import {Router} from "@angular/router";
 
 
+// @ts-ignore
+// @ts-ignore
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
@@ -23,12 +25,13 @@ export class ContentComponent implements OnInit {
     finished: true
   }
   public selectedStatusArray: string[] = [];
-  public search: string ='';
+  public search: string = '';
 
-  constructor( private _taskService: TaskService, private router: Router) {
+  constructor(private _taskService: TaskService, private router: Router) {
 
   }
-  public goToPage(pageName:string, id: number) {
+
+  public goToPage(pageName: string, id: number) {
     this.router.navigate([`${pageName}`, id]);
   }
 
@@ -36,7 +39,7 @@ export class ContentComponent implements OnInit {
   public ngOnInit(): void {
 
     this._taskService.getTask();
-    this._taskService.tasks$.subscribe( task => {
+    this._taskService.tasks$.subscribe(task => {
       this.toDo = task;
       this.sortData();
     })
@@ -45,49 +48,48 @@ export class ContentComponent implements OnInit {
       this.selectedPriority = priority
     })
 
-    this._taskService.sortData$.subscribe( data => {
+    this._taskService.sortData$.subscribe(data => {
       this.selectedSortData = data;
       this.sortData();
     })
 
-    this._taskService.sortPriority$.subscribe( priority => {
+    this._taskService.sortPriority$.subscribe(priority => {
       this.selectedSortFilter = priority;
       this.sortPriority();
     })
 
     this._taskService.filterByStatus$.subscribe(status => {
       this.selectedStatus = {
-          active: false,
-          finished: false,
-          canceled: false
-        }
+        active: false,
+        finished: false,
+        canceled: false
+      }
       this.selectedStatus = status;
       this.selectedStatusArray = [];
-        for (let item in status) {
-          // @ts-ignore
-         if (status[item] === true) {
-           switch (item) {
-             case 'active':
-               item = '2';
-               break;
-             case 'finished':
-               item = '1'
-               break;
-             case 'canceled':
-               item = '3'
-               break;
-           }
-           this.selectedStatusArray.push(item);
-         }
-         if (this.selectedStatusArray.length ===0){
-         this.selectedStatusArray =['1', '2', '3']
-         }
-         }
+      for (let item in status) {
+        // @ts-ignore
+        if (status[item] === true) {
+          switch (item) {
+            case 'active':
+              item = '2';
+              break;
+            case 'finished':
+              item = '1'
+              break;
+            case 'canceled':
+              item = '3'
+              break;
+          }
+          this.selectedStatusArray.push(item);
+        }
+      }
+      if (this.selectedStatusArray.length === 0) {
+        this.selectedStatusArray = ['1', '2', '3']
+      }
     })
 
-    this._taskService.searchTask$.subscribe( text => {
+    this._taskService.searchTask$.subscribe(text => {
       this.search = text;
-      this.searchTask();
     })
 
   }
@@ -100,62 +102,40 @@ export class ContentComponent implements OnInit {
     this._taskService.finishTask(task);
   }
 
-  public cancel (task: TaskInterface): void {
+  public cancel(task: TaskInterface): void {
     this._taskService.cancelTask(task);
   }
-
-  // public edit (task: TaskInterface): void {
-  //   this._taskService.editTask(task);
-  // }
 
   public sortData(): void {
 
     this.toDo.sort((a, b) => {
-        let aTime = a.time.slice(3,6) + a.time.slice(0,3) + a.time.slice(6);
-        let bTime = b.time.slice(3,6) + b.time.slice(0,3) + b.time.slice(6);
-        if (this.selectedSortData === 'По возрастанию') {
-          return new Date(aTime).getTime() - new Date(bTime).getTime()
-        } else if (this.selectedSortData === 'По убыванию') {
-          return new Date(bTime).getTime() - new Date(aTime).getTime()
-        } else {
-          return a.status - b.status;
-        }
-      })
-    }
+      let aTime = a.time.slice(3, 6) + a.time.slice(0, 3) + a.time.slice(6);
+      let bTime = b.time.slice(3, 6) + b.time.slice(0, 3) + b.time.slice(6);
+      if (this.selectedSortData === 'По возрастанию') {
+        return new Date(aTime).getTime() - new Date(bTime).getTime()
+      } else if (this.selectedSortData === 'По убыванию') {
+        return new Date(bTime).getTime() - new Date(aTime).getTime()
+      } else {
+        return a.status - b.status;
+      }
+    })
+  }
 
-    public sortPriority(): void {
+  public sortPriority(): void {
 
-    this.toDo.sort ((a: any,b: any) => {
+    this.toDo.sort((a: any, b: any) => {
       if (this.selectedSortFilter === 'По убыванию') {
         if (a.priority.length > b.priority.length) return -1;
         else if (a.priority.length < b.priority.length) return 1;
         else return 0;
-      }
-      else if (this.selectedSortFilter === 'По возрастанию') {
+      } else if (this.selectedSortFilter === 'По возрастанию') {
         if (a.priority.length < b.priority.length) return -1;
         else if (a.priority.length >= b.priority.length) return 1;
         else return 0;
-      }
-      else {
+      } else {
         return a.priority.length + b.priority.length;
       }
-      })
-    }
-
-    // public additionalFunction(task: TaskInterface){
-    //   return task.name.includes(this.search)
-    // }
-
-    public searchTask(): void {
-    // this.toDo.filter ( function (task) {
-    //   return task.name.toLowerCase().includes(ContentComponent.search)
-    // })
-    //   this.toDo.filter(this.additionalFunction)
-      this.toDo.filter (task => task.name.toLowerCase().includes(this.search))
-      console.log(this.search);
-      console.log(this.toDo);
-    }
-
-
+    })
+  }
 
 }

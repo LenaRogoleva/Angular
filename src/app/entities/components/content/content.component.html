@@ -2,19 +2,20 @@
   <div *ngFor="let task of toDo" class="received-tasks"
        [hidden]="!(task.priority === selectedPriority || selectedPriority === 'любой')">
     <div *ngIf="selectedStatusArray.includes(task.status.toString())">
-<!--    <div *ngIf="toDo.filter(task.name.toLowerCase().includes(search)"></div>-->
-      <div [ngClass]="task.status === 1 ? 'finishedTasks' : task.status === 2 ? 'unfinishedTasks': 'canceledTasks'">
-        <div class="color-priority">{{task.priority}}</div>
-        <div>{{task.name}}</div>
-        <div>{{task.time}}</div>
-      </div>
-      <div class="icons-item">
-        <span (click)="goToPage('edit', task.id)" class="material-icons edit">edit</span>
-        <span (click)="delete(task)" class="material-icons delete">delete</span>
-        <span (click)="finish(task)" [ngClass]="task.status === 1 ? 'hidden' : 'visible'"
+      <div *ngIf="task.name.includes(this.search)">
+        <div [ngClass]="task.status === 1 ? 'finishedTasks' : task.status === 2 ? 'unfinishedTasks': 'canceledTasks'">
+          <div class="color-priority">{{task.priority}}</div>
+          <div>{{task.name}}</div>
+          <div>{{task.time}}</div>
+        </div>
+        <div class="icons-item">
+          <span (click)="goToPage('edit', task.id)" class="material-icons edit">edit</span>
+          <span (click)="delete(task)" class="material-icons delete">delete</span>
+          <span (click)="finish(task)" [ngClass]="task.status === 1 ? 'hidden' : 'visible'"
               class="material-icons outlined" id="checkFinish">done</span>
-        <span (click)="cancel(task)" [ngClass]="task.status === 3 ? 'hidden' : 'visible'"
+          <span (click)="cancel(task)" [ngClass]="task.status === 3 ? 'hidden' : 'visible'"
               class="material-icons outlined" id="checkCancel">close</span>
+        </div>
       </div>
     </div>
   </div>

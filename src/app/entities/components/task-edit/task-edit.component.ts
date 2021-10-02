@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AppModule} from "../../modules/app.module";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TaskInterface} from "../../interfaces/task.interface";
 import {TaskService} from "../../services/task.service";
 import {FormControl} from "@angular/forms";
@@ -15,11 +15,8 @@ export class TaskEditComponent implements OnInit {
   public id: number = -1;
   public toDo: TaskInterface[] = [];
   public editTask = new FormControl('');
-  public index = this.toDo.findIndex(item => item.id == this.id);
-  public task = this.toDo[this.index];
 
-
-  constructor(private route: ActivatedRoute, private _taskService: TaskService) { }
+  constructor(private route: ActivatedRoute, private _taskService: TaskService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -30,28 +27,20 @@ export class TaskEditComponent implements OnInit {
 
     this.route.params.subscribe(params =>{
       this.id = params['id'];
-      console.log(this.id);
-      console.log(this.toDo);
 
-      // let index = this.toDo.findIndex(item => item.id == this.id);
-      console.log(this.index);
-      this.editTask.setValue(this.toDo[this.index].name);
+      let index = this.toDo.findIndex(item => item.id == this.id);
+      this.editTask.setValue(this.toDo[index].name);
     })
 
-
-
-    // this._taskService.saveTask$.subscribe(task => {
-    //   this.edit = task;
-    //   console.log(this.edit);
-    // })
   }
 
   public save(): void {
-    this._taskService.saveTask(this.editTask.value, this.task );
-    console.log(this.editTask.value);
+    let index = this.toDo.findIndex(item => item.id == this.id);
+    this._taskService.saveTask(this.editTask.value, this.toDo[index]);
+  }
 
-
-    // this.toDo[index].name = this.editTask.value;
+  public goToPage(pageName: string): void {
+    this.router.navigate([`${pageName}`]);
   }
 
 }
