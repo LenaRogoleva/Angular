@@ -1,7 +1,7 @@
 <div>
   <div *ngFor="let task of toDo" class="received-tasks"
+       [hidden]="!selectedStatusArray.includes(task.status.toString())"
        [hidden]="!(task.priority === selectedPriority || selectedPriority === 'любой')">
-    <div *ngIf="selectedStatusArray.includes(task.status.toString())">
       <div *ngIf="task.name.includes(this.search)">
         <div [ngClass]="task.status === 1 ? 'finishedTasks' : task.status === 2 ? 'unfinishedTasks': 'canceledTasks'">
           <div class="color-priority">{{task.priority}}</div>
@@ -17,6 +17,5 @@
               class="material-icons outlined" id="checkCancel">close</span>
         </div>
       </div>
-    </div>
   </div>
 </div>

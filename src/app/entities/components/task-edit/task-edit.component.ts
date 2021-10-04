@@ -21,21 +21,30 @@ export class TaskEditComponent implements OnInit {
   ngOnInit(): void {
 
     this._taskService.getTask();
+
     this._taskService.tasks$.subscribe( task => {
+      console.log(1);
       this.toDo = task;
-    })
-
-    this.route.params.subscribe(params =>{
-      this.id = params['id'];
-
-      let index = this.toDo.findIndex(item => item.id == this.id);
+      this.id = this.route.snapshot.params.id;
+      console.log(this.id);
+      let index = this.toDo.findIndex(item => item.id === +this.id);
       this.editTask.setValue(this.toDo[index].name);
+
     })
+
+    // this.route.params.subscribe(params =>{
+    //   console.log(1);
+    //   this.id = params['id'];
+    //
+    //   let index = this.toDo.findIndex(item => item.id === +this.id);
+    //   this.editTask.setValue(this.toDo[index].name);
+    //   console.log(this.toDo);
+    // })
 
   }
 
   public save(): void {
-    let index = this.toDo.findIndex(item => item.id == this.id);
+    let index = this.toDo.findIndex(item => item.id === +this.id);
     this._taskService.saveTask(this.editTask.value, this.toDo[index]);
   }
 
