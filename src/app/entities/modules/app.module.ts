@@ -12,6 +12,7 @@ import { TaskCreateComponent } from '../components/task-create/task-create.compo
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RenderingComponent} from "../../rendering/rendering.component";
+import { ToastrModule} from "ngx-toastr";
 
 const appRoutes: Routes = [
   { path: '', component: RenderingComponent},
@@ -32,7 +33,13 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      progressBar: true,
+      preventDuplicates: true,
+    })
   ],
   providers: [
 

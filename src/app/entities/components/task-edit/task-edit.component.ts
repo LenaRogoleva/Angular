@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TaskInterface} from "../../interfaces/task.interface";
 import {TaskService} from "../../services/task.service";
 import {FormControl} from "@angular/forms";
+import {ToastrModule, ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-task-edit',
@@ -16,29 +17,29 @@ export class TaskEditComponent implements OnInit {
   public toDo: TaskInterface[] = [];
   public editTask = new FormControl('');
 
-  constructor(private route: ActivatedRoute, private _taskService: TaskService, private router: Router) { }
+
+  constructor(private route: ActivatedRoute, private _taskService: TaskService,
+              private router: Router, private toastr: ToastrService ) { }
 
   ngOnInit(): void {
+
 
     this._taskService.getTask();
 
     this._taskService.tasks$.subscribe( task => {
-      console.log(1);
-      this.toDo = task;
-      this.id = this.route.snapshot.params.id;
-      console.log(this.id);
-      let index = this.toDo.findIndex(item => item.id === +this.id);
-      this.editTask.setValue(this.toDo[index].name);
-
+      if (task.length != 0) {
+        this.toDo = task;
+        this.id = this.route.snapshot.params.id;
+        console.log(this.id);
+        let index = this.toDo.findIndex(item => item.id === +this.id);
+        this.editTask.setValue(this.toDo[index].name);
+      }
     })
 
     // this.route.params.subscribe(params =>{
-    //   console.log(1);
     //   this.id = params['id'];
-    //
     //   let index = this.toDo.findIndex(item => item.id === +this.id);
     //   this.editTask.setValue(this.toDo[index].name);
-    //   console.log(this.toDo);
     // })
 
   }
@@ -46,10 +47,12 @@ export class TaskEditComponent implements OnInit {
   public save(): void {
     let index = this.toDo.findIndex(item => item.id === +this.id);
     this._taskService.saveTask(this.editTask.value, this.toDo[index]);
+    this.toastr.success('Вы сохранили изменения :)', '');
   }
 
   public goToPage(pageName: string): void {
     this.router.navigate([`${pageName}`]);
   }
+
 
 }

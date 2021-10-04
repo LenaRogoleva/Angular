@@ -103,7 +103,6 @@ export class TaskService {
       task.name = name;
       this._tasks$$.next(tasks);
     })
-    alert("Вы сохранили изменения :)")
   }
 
 }
