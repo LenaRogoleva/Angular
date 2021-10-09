@@ -8,11 +8,17 @@ import { AppComponent } from '../../app.component';
 import { ContentComponent } from '../components/content/content.component';
 import { ToolBarComponent } from '../components/tool-bar/tool-bar.component';
 import { TaskEditComponent } from '../components/task-edit/task-edit.component';
-import { TaskCreateComponent } from '../components/task-create/task-create.component';
+import {TaskCreateComponent} from '../components/task-create/task-create.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RenderingComponent} from "../../rendering/rendering.component";
-import { ToastrModule} from "ngx-toastr";
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {ModalWindowComponent} from "../../modal-window/modal-window.component";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AuthService} from "../services/Auth-service";
+import {AuthInterceptor} from "../interceptor";
+// import {AuthInterceptor, AuthService} from "../services/Auth-service";
+// import {TokenInterceptor} from "../auth";
 
 const appRoutes: Routes = [
   { path: '', component: RenderingComponent},
@@ -26,7 +32,8 @@ const appRoutes: Routes = [
     ToolBarComponent,
     TaskEditComponent,
     TaskCreateComponent,
-    RenderingComponent
+    RenderingComponent,
+    ModalWindowComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,14 +42,18 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut: 1000,
-      progressBar: true,
-      preventDuplicates: true,
-    })
+    MatDialogModule
   ],
   providers: [
-
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true,
+    }
+  ],
+  entryComponents: [
+    ModalWindowComponent
   ],
   bootstrap: [AppComponent]
 })

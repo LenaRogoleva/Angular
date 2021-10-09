@@ -1,3 +1,4 @@
+<button class = "button-task-sign" (click) = "signIn()" [disabled]=this.click>&nbsp;Войти</button>
 <label class = "toDoList">ToDoList</label>
 
 <div [formGroup]="task" class="new-task">
@@ -14,3 +15,4 @@
   <button class = "button-task" (click) = "addTask()" [disabled]="task.invalid">&nbsp;Добавить задачу</button>
   </span>
 </div>
+

@@ -3,6 +3,7 @@ import {TaskService} from "../../services/task.service";
 import {TaskInterface} from "../../interfaces/task.interface";
 import {disableDebugTools} from "@angular/platform-browser";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/Auth-service";
 
 
 // @ts-ignore
@@ -26,8 +27,10 @@ export class ContentComponent implements OnInit {
   }
   public selectedStatusArray: string[] = [];
   public search: string = '';
+  // public key: string = '';
 
-  constructor(private _taskService: TaskService, private router: Router) {
+  constructor(private _taskService: TaskService, private router: Router,
+              private _authService: AuthService) {
 
   }
 
@@ -37,6 +40,10 @@ export class ContentComponent implements OnInit {
 
 
   public ngOnInit(): void {
+
+    // this._authService.key$.subscribe((key) => {
+    //   this.key = key;
+    // })
 
     this._taskService.getTask();
     this._taskService.tasks$.subscribe(task => {

@@ -30,6 +30,10 @@ export class TaskService {
   private _saveTask$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public saveTask$: Observable<string> = this._saveTask$$.asObservable();
 
+  private _click$$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public click$: Observable<boolean> = this._click$$.asObservable();
+
+
 
   constructor(private http: HttpClient) { }
 
@@ -103,6 +107,10 @@ export class TaskService {
       task.name = name;
       this._tasks$$.next(tasks);
     })
+  }
+
+  public setClick(station: boolean): void {
+    this._click$$.next(station);
   }
 
 }
