@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
     console.log(key);
     const authReq = req.clone({
       setHeaders: {
-        Authorization: `Ok ${key}`
+        Authorization: `${key}`
       }
     })
 

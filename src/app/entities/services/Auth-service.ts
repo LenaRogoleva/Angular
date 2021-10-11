@@ -8,22 +8,22 @@ import {HttpClient} from "@angular/common/http";
 })
 
 export class AuthService {
-  public key$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  public keyForPost$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public key$$: BehaviorSubject<any> = new BehaviorSubject<any>({});
+  // public keyForPost$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   // public key$: Observable<string> = this.key$$.asObservable();
 
   constructor(private http: HttpClient) {
   }
 
   public getKey(): void {
-    this.http.get<string>('http://localhost:3000/authorize').toPromise().then( (data) => {
-      this.key$$.next(data)
+    this.http.get<any>('http://localhost:3000/authorize').toPromise().then( (data) => {
+      this.key$$.next(data.key)
       console.log(this.key$$.value);
     })
   }
 
   public getPostKey(): void {
-    this.http.post<string>('http://localhost:3000/items', this.key$$.value).toPromise().then()
+    this.http.post<any>('http://localhost:3000/items', this.key$$.value).toPromise().then()
   }
 }
 

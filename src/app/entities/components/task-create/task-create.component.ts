@@ -20,8 +20,8 @@ export class TaskCreateComponent implements OnInit {
   // @ts-ignore
   public task = new FormGroup( {
     nameTask: new FormControl(null, Validators.required),
-    namePriority: new FormControl('выберите приоритет',
-      [Validators.required, TaskCreateComponent._myFirstValidator])
+    // namePriority: new FormControl('выберите приоритет',
+    //   [Validators.required, TaskCreateComponent._myFirstValidator])
   })
 
   public click: boolean = false;
