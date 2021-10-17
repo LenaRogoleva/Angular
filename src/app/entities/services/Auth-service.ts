@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {TaskInterface} from "../interfaces/task.interface";
 
 
 @Injectable({
@@ -8,22 +9,26 @@ import {HttpClient} from "@angular/common/http";
 })
 
 export class AuthService {
-  public key$$: BehaviorSubject<any> = new BehaviorSubject<any>({});
-  // public keyForPost$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  // public key$: Observable<string> = this.key$$.asObservable();
+  private _key$$: BehaviorSubject<number> = new BehaviorSubject<any>(null);
+  public key$: Observable<number> = this._key$$.asObservable();
+
 
   constructor(private http: HttpClient) {
   }
 
   public getKey(): void {
     this.http.get<any>('http://localhost:3000/authorize').toPromise().then( (data) => {
-      this.key$$.next(data.key)
-      console.log(this.key$$.value);
+      this._key$$.next(data.key)
+      console.log(this._key$$.value);
     })
   }
 
-  public getPostKey(): void {
-    this.http.post<any>('http://localhost:3000/items', this.key$$.value).toPromise().then()
-  }
+  // public getPostKey(): void {
+  //   this.http.post<any>('http://localhost:3000/items', this._key$$.value).toPromise().then()
+  // }
+  //
+  // public getPutKey(task: TaskInterface): void {
+  //   this.http.put<any>('http://localhost:3000/items' + task.id, this._key$$.value).toPromise().then()
+  // }
 }
 

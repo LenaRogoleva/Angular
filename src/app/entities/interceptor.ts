@@ -15,29 +15,20 @@ import {AuthService} from "./services/Auth-service";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  // public key: string = '';
+  private _key: string = '';
 
 
-  constructor(private _authService: AuthService ) {}
+  constructor(private _authService: AuthService ) {
 
-  // public get(): string {
-  //   // this._authService.key$.subscribe((key) => {
-  //
-  //     console.log(this.key);
-  //   // })
-  //   return this.key
-  //
-  // }
+    this._authService.key$.subscribe( key => {
+      this._key = String(key);
+    })
+  }
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // this.get();
-    let key = this._authService.key$$.value;
-    console.log(key);
     const authReq = req.clone({
-      setHeaders: {
-        Authorization: `${key}`
-      }
+      headers: req.headers.set('key', this._key),
     })
 
     return next.handle(authReq).pipe(

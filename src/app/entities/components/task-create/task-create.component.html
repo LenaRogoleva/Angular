@@ -11,8 +11,6 @@
   </select>
 
   <input class = "input-task" formControlName="nameTask">
-  <span [formGroup]="task">
   <button class = "button-task" (click) = "addTask()" [disabled]="task.invalid">&nbsp;Добавить задачу</button>
-  </span>
 </div>
 

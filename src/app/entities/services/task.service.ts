@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {TaskInterface} from "../interfaces/task.interface";
 import {HttpClient} from "@angular/common/http";
+import {AuthService} from "./Auth-service";
 
 
 @Injectable({
@@ -33,9 +34,15 @@ export class TaskService {
   private _click$$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public click$: Observable<boolean> = this._click$$.asObservable();
 
+  private _key: number = 0;
 
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient, private _authService: AuthService) {
+    this._authService.key$.subscribe( key => {
+      this._key = key;
+    })
+  }
 
   public getTask(): void {
     this.http.get<TaskInterface[]>('http://localhost:3000/items').toPromise().then((data) => {

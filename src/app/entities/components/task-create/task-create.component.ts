@@ -20,8 +20,8 @@ export class TaskCreateComponent implements OnInit {
   // @ts-ignore
   public task = new FormGroup( {
     nameTask: new FormControl(null, Validators.required),
-    // namePriority: new FormControl('выберите приоритет',
-    //   [Validators.required, TaskCreateComponent._myFirstValidator])
+    namePriority: new FormControl('выберите приоритет', Validators.required)
+      // [Validators.required, TaskCreateComponent._myFirstValidator])
   })
 
   public click: boolean = false;
@@ -56,7 +56,7 @@ export class TaskCreateComponent implements OnInit {
 
     this._taskService.addTask(newTask);
     this.task.get('nameTask')?.reset();
-    this._authService.getPostKey();
+    // this._authService.getPostKey();
   }
 
   private static _myFirstValidator(control: FormControl): ValidationErrors | null {
