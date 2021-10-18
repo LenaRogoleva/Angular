@@ -4,8 +4,6 @@ import {TaskInterface} from "../../interfaces/task.interface";
 import {TaskService} from "../../services/task.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalWindowComponent} from "../../../modal-window/modal-window.component";
-import {Inject} from "@angular/core";
-// import {AuthService} from "../../services/Auth-service";
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../../services/Auth-service";
 
@@ -36,12 +34,8 @@ export class TaskCreateComponent implements OnInit {
 
     this._taskService.click$.subscribe( station =>{
       this.click = station
-      console.log(this.click);
     })
 
-    // this._authService.key$.subscribe((key) => {
-    //   this.key = key;
-    // })
   }
 
   public addTask(): void{
