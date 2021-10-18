@@ -41,10 +41,6 @@ export class ContentComponent implements OnInit {
 
   public ngOnInit(): void {
 
-    // this._authService.key$.subscribe((key) => {
-    //   this.key = key;
-    // })
-
     this._taskService.getTask();
     this._taskService.tasks$.subscribe(task => {
       this.toDo = task;
@@ -107,12 +103,10 @@ export class ContentComponent implements OnInit {
 
   public finish(task: TaskInterface): void {
     this._taskService.finishTask(task);
-    // this._authService.getPutKey(task);
   }
 
   public cancel(task: TaskInterface): void {
     this._taskService.cancelTask(task);
-    // this._authService.getPutKey(task);
   }
 
   public sortData(): void {

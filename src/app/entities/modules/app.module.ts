@@ -17,12 +17,16 @@ import {ModalWindowComponent} from "../../modal-window/modal-window.component";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthService} from "../services/Auth-service";
 import {AuthInterceptor} from "../interceptor";
+import {ToastrModule} from "ngx-toastr";
+import {AccessGuard} from "../guards/access.guard";
 // import {AuthInterceptor, AuthService} from "../services/Auth-service";
 // import {TokenInterceptor} from "../auth";
 
 const appRoutes: Routes = [
   { path: '', component: RenderingComponent},
-  { path: 'edit/:id', component: TaskEditComponent }
+  { path: 'edit/:id',
+    component: TaskEditComponent,
+    canActivate: [AccessGuard]}
 ]
 
 @NgModule({
@@ -41,6 +45,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     MatDialogModule
   ],

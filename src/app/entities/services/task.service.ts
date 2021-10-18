@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 import {TaskInterface} from "../interfaces/task.interface";
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./Auth-service";
+import {ToastrService} from "ngx-toastr";
 
 
 @Injectable({
@@ -38,7 +39,7 @@ export class TaskService {
 
 
 
-  constructor(private http: HttpClient, private _authService: AuthService) {
+  constructor(private http: HttpClient, private _authService: AuthService, private toastr: ToastrService) {
     this._authService.key$.subscribe( key => {
       this._key = key;
     })
@@ -56,6 +57,10 @@ export class TaskService {
       tasks.push(data);
       this._tasks$$.next(tasks);
     })
+      .catch( () => {
+        this.toastr.success('Пожалуйста, авторизуйтесь ^^')
+        }
+      )
   }
 
   public deleteTask(task: TaskInterface): void {
@@ -65,6 +70,10 @@ export class TaskService {
       tasks.splice(index,1);
       this._tasks$$.next(tasks);
     })
+      .catch( () => {
+          this.toastr.success('Пожалуйста, авторизуйтесь ^^')
+        }
+      )
   }
 
   public finishTask(task: TaskInterface): void {

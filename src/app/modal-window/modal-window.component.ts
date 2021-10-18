@@ -12,25 +12,17 @@ import {AuthService} from "../entities/services/Auth-service";
 export class ModalWindowComponent implements OnInit {
 
   public click: boolean = false;
-  // public key: string = '';
 
   constructor (private _taskService: TaskService, private _authService: AuthService) {
   }
 
   ngOnInit(): void {
-    // this._authService.key$.subscribe((key) => {
-    //   this.key = key;
-    // })
   }
 
   public disable(){
     this.click = true;
     this._taskService.setClick(this.click);
-
     this._authService.getKey();
-    // console.log(this.key);
-    // this.click.value = true;
-    // this.click.updateValueAndValidity({onlySelf: true});
   }
 }
 

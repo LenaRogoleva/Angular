@@ -1,2 +1,12 @@
+::ng-deep .cdk-overlay-backdrop {
+  height: 100%!important;
+  max-width: 100%!important;
+}
 
-
+::ng-deep .mat-dialog-container {
+  position: absolute!important;
+  top: calc(50% - 110px)!important;
+  left: calc(50% - 125px)!important;
+  height: 220px!important;
+  width: 250px!important;
+}

@@ -20,8 +20,8 @@ export class TaskCreateComponent implements OnInit {
   // @ts-ignore
   public task = new FormGroup( {
     nameTask: new FormControl(null, Validators.required),
-    namePriority: new FormControl('выберите приоритет', Validators.required)
-      // [Validators.required, TaskCreateComponent._myFirstValidator])
+    namePriority: new FormControl('выберите приоритет',
+      [Validators.required, TaskCreateComponent._myFirstValidator])
   })
 
   public click: boolean = false;
@@ -70,12 +70,8 @@ export class TaskCreateComponent implements OnInit {
   public signIn(): void {
     this.dialog.open(ModalWindowComponent, {
       width: '300px',
-      height: '200px',
-      position: {top: '20%',
-      left: '57%',}})
-    // this.http.get<string>('http://localhost:3000/authorize').toPromise().then( (data) => {
-    //
-    // })
+      height: '250px',
+    })
   }
 }
 

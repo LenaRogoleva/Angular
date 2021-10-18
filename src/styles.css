@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-* {
+* :not(.cdk-overlay-container, .cdk-global-overlay-wrapper) {
   max-width: 720px;
   margin: 3px auto;
 }

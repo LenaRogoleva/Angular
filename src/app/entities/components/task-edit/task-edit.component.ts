@@ -36,12 +36,6 @@ export class TaskEditComponent implements OnInit {
       }
     })
 
-    // this.route.params.subscribe(params =>{
-    //   this.id = params['id'];
-    //   let index = this.toDo.findIndex(item => item.id === +this.id);
-    //   this.editTask.setValue(this.toDo[index].name);
-    // })
-
   }
 
   public save(): void {
