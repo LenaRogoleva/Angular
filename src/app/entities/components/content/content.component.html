@@ -1,8 +1,8 @@
 <div>
-  <div *ngFor="let task of toDo" class="received-tasks"
+  <div *ngFor="let task of toDo"
        [hidden]="!selectedStatusArray.includes(task.status.toString())"
        [hidden]="!(task.priority === selectedPriority || selectedPriority === 'любой')">
-      <div *ngIf="task.name.includes(this.search)">
+      <div *ngIf="task.name.includes(this.search)" class="received-tasks">
         <div [ngClass]="task.status === 1 ? 'finishedTasks' : task.status === 2 ? 'unfinishedTasks': 'canceledTasks'">
           <div class="color-priority">{{task.priority}}</div>
           <div>{{task.name}}</div>

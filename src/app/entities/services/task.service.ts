@@ -58,7 +58,7 @@ export class TaskService {
       this._tasks$$.next(tasks);
     })
       .catch( () => {
-        this.toastr.success('Пожалуйста, авторизуйтесь ^^')
+        this.toastr.warning('Пожалуйста, авторизуйтесь ^^,')
         }
       )
   }
@@ -71,7 +71,7 @@ export class TaskService {
       this._tasks$$.next(tasks);
     })
       .catch( () => {
-          this.toastr.success('Пожалуйста, авторизуйтесь ^^')
+          this.toastr.warning('Пожалуйста, авторизуйтесь ^^,')
         }
       )
   }
